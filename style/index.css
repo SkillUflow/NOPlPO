@@ -8,6 +8,11 @@
     background-color: black; /* ou toute autre couleur de fond */
     z-index: 1000; /* Assurez-vous qu'elle est au-dessus des autres éléments */
     overflow-y: auto; /* Permet le scroll si le contenu est long */
+    transition: 2s;
+}
+
+#main{
+    height:1000px;
 }
 
 /* Styles pour le reste de votre page */

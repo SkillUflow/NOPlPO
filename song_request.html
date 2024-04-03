@@ -9,6 +9,14 @@
     <textarea>Artiste</textarea>
     <textarea>Titre</textarea>
     <button>Send</button>
-
+    <!-- Form that requestrs a song and an artist-->
+    <!-- The song and artist are sent to the node server -->
+    <form action="/song_request" method="POST">
+        <label for="artist">Artiste</label>
+        <input type="text" name="artist" id="artist"> 
+        <label for="song">Titre</label>
+        <input type="text" name="song" id="song">
+        <button type="submit">Send</button>
+    </form>
 </body>
 </html>

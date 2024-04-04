@@ -1,0 +1,59 @@
+main{
+    height: 100%;
+}
+
+#ParolesSection{
+    width: 100%;
+    text-align: center;
+    height: 60%;
+    display: flex;
+    justify-content: flex-end;
+    flex-direction: column;
+}
+
+.parole1{
+    font-size: 1.8rem;
+}
+
+.parole2{
+    font-size: 1.6rem;
+    opacity: 0.8;
+}
+
+.parole3{
+    font-size: 1.4rem;
+    opacity: 0.6;
+}
+.parole4{
+    font-size: 1.2rem;
+    opacity: 0.4;
+}
+.parole5{
+    font-size: 1rem;
+    opacity: 0.2;
+}
+
+.parole{
+    margin: 8px 0;
+}
+
+#CadreParole{
+    height: 10%;
+    width: 80%;
+    border-radius: 32px;
+    background: linear-gradient(0deg, rgba(0,35,124,1) 0%, rgba(81,161,255,0.75) 100%);
+    border: solid white 5px;
+    margin: auto;
+    font-size: 2rem;
+    color: white;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-direction: column;
+
+}
+
+#CadreParole p{
+    margin: 0;
+}

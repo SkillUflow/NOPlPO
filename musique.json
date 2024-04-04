@@ -1,0 +1,13 @@
+{
+    "id":8,
+    "title":"Ma musique",
+    "artisteId":7,
+    "categoryId":3,
+    "isPerso":false,
+    "paroles":[
+        "Ligne 1",
+        "Ligne 2",
+        "Ligne 3",
+        "Ligne 4"
+    ]
+}

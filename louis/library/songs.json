@@ -1,0 +1,209 @@
+{
+    "songs": [
+      {
+        "filename": "Adele - Rolling in the Deep",
+        "artist": "Adele",
+        "title": "Rolling in the Deep",
+        "genre": "Pop/Rock, R&B",
+        "year": "2011"
+      ,"offset":"0"},
+      {
+        "filename": "Adele - Someone Like You",
+        "artist": "Adele",
+        "title": "Someone Like You",
+        "genre": "Pop",
+        "year": "2011"
+      ,"offset":"0"},
+      {
+        "filename": "Amir - J'ai cherché",
+        "artist": "Amir",
+        "title": "J'ai cherché",
+        "genre": "Pop",
+        "year": "2016"
+      ,"offset":"0"},
+      {
+        "filename": "Angèle - balance ton quoi",
+        "artist": "Angèle",
+        "title": "Balance ton quoi",
+        "genre": "Pop",
+        "year": "2018"
+      ,"offset":"0"},
+      {
+        "filename": "Calogero - Le portrait",
+        "artist": "Calogero",
+        "title": "Le portrait",
+        "genre": "Pop",
+        "year": "2017"
+      ,"offset":"0"},
+      {
+        "filename": "Calogero - Les feux d'artifice",
+        "artist": "Calogero",
+        "title": "Les feux d'artifice",
+        "genre": "Pop",
+        "year": "2014"
+      ,"offset":"0"},
+      {
+        "filename": "Calogero - Un jour au mauvais endroit",
+        "artist": "Calogero",
+        "title": "Un jour au mauvais endroit",
+        "genre": "Pop",
+        "year": "2014"
+      ,"offset":"0"},
+      {
+        "filename": "Calogero - Voler de nuit",
+        "artist": "Calogero",
+        "title": "Voler de nuit",
+        "genre": "Pop",
+        "year": "2018"
+      ,"offset":"0"},
+      {
+        "filename": "Cats on Trees & Calogero - Jimmy",
+        "artist": "Cats on Trees & Calogero",
+        "title": "Jimmy",
+        "genre": "Pop",
+        "year": "2013"
+      ,"offset":"0"},
+      {
+        "filename": "Charles Aznavour - Emmenez Moi",
+        "artist": "Charles Aznavour",
+        "title": "Emmenez Moi",
+        "genre": "Chanson Française",
+        "year": "1967"
+      ,"offset":"0"},
+      {
+        "filename": "Florent Pagny - Ma liberté de penser",
+        "artist": "Florent Pagny",
+        "title": "Ma liberté de penser",
+        "genre": "Pop",
+        "year": "2003"
+      ,"offset":"0"},
+      {
+        "filename": "Jacob Collier - Wherever I Go (feat. Lawrence & Michael McDonald)",
+        "artist": "Jacob Collier",
+        "title": "Wherever I Go",
+        "genre": "Jazz, Pop",
+        "year": "2020"
+      ,"offset":"0"},
+      {
+        "filename": "Jacques Brel - Amsterdam",
+        "artist": "Jacques Brel",
+        "title": "Amsterdam",
+        "genre": "Chanson Française",
+        "year": "1964"
+      ,"offset":"0"},
+      {
+        "filename": "Jacques Brel - La valse à mille temps",
+        "artist": "Jacques Brel",
+        "title": "La valse à mille temps",
+        "genre": "Chanson Française",
+        "year": "1959"
+      ,"offset":"0"},
+      {
+        "filename": "Jacques Brel - Ne Me Quitte Pas",
+        "artist": "Jacques Brel",
+        "title": "Ne Me Quitte Pas",
+        "genre": "Chanson Française",
+        "year": "1959"
+      ,"offset":"0"},
+      {
+        "filename": "Jean-Jacques Goldman & Sirima - Là-bas",
+        "artist": "Jean-Jacques Goldman & Sirima",
+        "title": "Là-bas",
+        "genre": "Pop",
+        "year": "1987"
+      ,"offset":"0"},
+      {
+        "filename": "Jean-Jacques Goldman - Encore un matin",
+        "artist": "Jean-Jacques Goldman",
+        "title": "Encore un matin",
+        "genre": "Pop",
+        "year": "1984"
+      ,"offset":"0"},
+      {
+        "filename": "Jean-Jacques Goldman - Envole-moi",
+        "artist": "Jean-Jacques Goldman",
+        "title": "Envole-moi",
+        "genre": "Pop",
+        "year": "1984"
+      ,"offset":"0"},
+      {
+        "filename": "Jean-Jacques Goldman - Il changeait la vie",
+        "artist": "Jean-Jacques Goldman",
+        "title": "Il changeait la vie",
+        "genre": "Pop",
+        "year": "1987"
+      ,"offset":"0"},
+      {
+        "filename": "Jean-Jacques Goldman - Je te donne",
+        "artist": "Jean-Jacques Goldman",
+        "title": "Je te donne",
+        "genre": "Pop",
+        "year": "1985"
+      ,"offset":"0"},
+      {
+        "filename": "Joyce Jonathan - Ca ira",
+        "artist": "Joyce Jonathan",
+        "title": "Ça ira",
+        "genre": "Pop",
+        "year": "2013"
+      ,"offset":"0"},
+      {
+        "filename": "Juliette Armanet - Le Dernier Jour du Disco",
+        "artist": "Juliette Armanet",
+        "title": "Le Dernier Jour du Disco",
+        "genre": "Pop",
+        "year": "2021"
+      ,"offset":"0"},
+      {
+        "filename": "Michel Delpech - Pour Un Flirt",
+        "artist": "Michel Delpech",
+        "title": "Pour Un Flirt",
+        "genre": "Chanson Française",
+        "year": "1971"
+      ,"offset":"0"},
+      {
+        "filename": "Michel Polnareff - Love Me, Please Love Me",
+        "artist": "Michel Polnareff",
+        "title": "Love Me, Please Love Me",
+        "genre": "Pop, Chanson Française",
+        "year": "1966"
+      ,"offset":"0"},
+      {
+        "filename": "Michel Sardou - Le rire du sergent",
+        "artist": "Michel Sardou",
+        "title": "Le rire du sergent",
+        "genre": "Chanson Française",
+        "year": "1971"
+      ,"offset":"0"},
+      {
+        "filename": "Michel Sardou - Les Lacs du Connemara",
+        "artist": "Michel Sardou",
+        "title": "Les Lacs du Connemara",
+        "genre": "Chanson Française",
+        "year": "1981"
+      ,"offset":"0"},
+      {
+        "filename": "Orelsan - Basique",
+        "artist": "Orelsan",
+        "title": "Basique",
+        "genre": "Hip-Hop",
+        "year": "2017"
+      ,"offset":"0"},
+      {
+        "filename": "Orelsan - La Quête",
+        "artist": "Orelsan",
+        "title": "La Quête",
+        "genre": "Hip-Hop",
+        "year": "2021"
+      ,"offset":"0"},
+      {
+        "filename": "Vanessa Paradis - Joe Le Taxi",
+        "artist": "Vanessa Paradis",
+        "title": "Joe Le Taxi",
+        "genre": "Pop",
+        "year": "1987",
+        "offset":"0"
+      }
+    ]
+  }
+  

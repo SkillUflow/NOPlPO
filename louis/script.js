@@ -38,14 +38,31 @@ async function loadMP3(link){
   // Non-supporté par Firefox. La tuile !
 }
 
-var current_song = "Orelsan - Basique"
-var LRCfile = loadLRC(("/library/lyrics/"+current_song+".lrc"))
-var MP3file = loadMP3(("/library/songs/"+current_song+".mp3"))
+var current_song;
+var LRCfile;
+var MP3file;
   
+async function loadLibrary(){
+  const reponse = await fetch("/songs.json");
+  const song_data = await reponse.json();
+
+  const array = song_data["songs"];
+  const randomElement = array[Math.floor(Math.random() * array.length)];
+  console.log(randomElement["filename"]);
+
+
+  current_song = randomElement["filename"];
+  LRCfile = loadLRC(("/library/lyrics/"+current_song+".lrc"))
+  MP3file = loadMP3(("/library/songs/"+current_song+".mp3"))
+
+}
+
+loadLibrary();
+
 audioPlayer.addEventListener('timeupdate', function() {
   var currentTime = audioPlayer.currentTime; // Ouais c'est un méga truc de bourrin
   subtitles.forEach(subtitle => {
-    if (Math.abs(currentTime - subtitle.time) < 0.5) { // Ajustez ce seuil au besoin
+    if (Math.abs(currentTime - subtitle.time) < 0.2) { // Ajustez ce seuil au besoin
       console.log(subtitle.text); // Affiche le sous-titre proche du temps actuel
     }
   });

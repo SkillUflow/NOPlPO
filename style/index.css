@@ -1,0 +1,13 @@
+#splashscreen {
+    color:white;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: black; /* ou toute autre couleur de fond */
+    z-index: 1000; /* Assurez-vous qu'elle est au-dessus des autres éléments */
+    overflow-y: auto; /* Permet le scroll si le contenu est long */
+}
+
+/* Styles pour le reste de votre page */

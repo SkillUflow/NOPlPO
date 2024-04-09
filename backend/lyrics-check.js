@@ -58,9 +58,5 @@ function simplfyLyrics(lyrics) {
     return lyrics.toLowerCase(); // Ignore capitalization
 }
 
-// test
-console.log(compareLyrics("Hello world", "Hello world")); // 8
-console.log(compareLyrics("Hello world", "Hello")); // 2
-console.log(compareLyrics("Hello world", "Hello world world")); // 3.75
-console.log(compareLyrics("Hello *--* world", "Hello world")); // 8
-console.log(compareLyrics("Et on dit premier gaou n'est pas gaou oh", "Et on dit premier gaou n'est pas gaou oh")); // 36
+
+module.exports = {compareLyrics}; // Export the function to be used in the server.js file

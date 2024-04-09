@@ -39,8 +39,9 @@ async function loadMP3(link){
 }
 
 var current_song = "Orelsan - Basique"
-var LRCfile = loadLRC(("/library/lyrics/"+current_song+".lrc"))
-var MP3file = loadMP3(("/library/songs/"+current_song+".mp3"))
+current_song = "Adele - Rolling in the Deep"
+var LRCfile = loadLRC((current_song+".lrc"))
+var MP3file = loadMP3((current_song+".mp3"))
   
 audioPlayer.addEventListener('timeupdate', function() {
   var currentTime = audioPlayer.currentTime; // Ouais c'est un méga truc de bourrin

@@ -1,6 +1,41 @@
 var sectionParoles = document.getElementById("ParolesSection");
 
 
+
+function generateTrou(parole){
+    listeMots = parole.split(" ");
+    nbMots = listeMots.length;
+    let placeMot = Math.round(Math.random()*((nbMots-1)-1)+1);
+    if(placeMot==0){placeMot = 1};
+    listeMots[placeMot-1]="_".repeat(listeMots[placeMot-1].length);
+    listeMots[placeMot+1]="_".repeat(listeMots[placeMot+1].length);
+    listeMots[placeMot]="_".repeat(listeMots[placeMot].length);
+    console.log(listeMots);
+    stringMots = listeMots.join(' ')
+    return stringMots;
+
+}
+
+let entreesClavier = [];
+
+
+function listenKeyboard() {
+ 
+  document.addEventListener('keydown', function(e) {
+   
+    if (e.key !== 'Enter') {
+
+      entreesClavier.push(e.key);
+    } else {
+       console.log(entreesClavier);
+      entreesClavier = []; 
+    }
+  });
+}
+
+
+
+
 const paroles = [
     "Nan guin nan wan, nan guin nan wan",
     "Nan guin nan wan, nan guin nan wan",
@@ -15,6 +50,7 @@ const paroles = [
 
 var paroleTrou = 8;
 var lastParoleIndice = 0;
+
 
 function afficherParole(){
     if(lastParoleIndice<paroleTrou){
@@ -31,9 +67,9 @@ function afficherParole(){
     lastParoleIndice++;
     setTimeout(afficherParole,1000);
     }
-    if(lastParoleIndice==paroleTrou){
-        console.log(paroles[paroleTrou]);
-        document.getElementById("paroleCompleter").innerText = paroles[paroleTrou];
+    else{
+        const parolesTrou = generateTrou(paroles[paroleTrou]);
+        document.getElementById("paroleCompleter").innerText = parolesTrou;
     }
     
 }

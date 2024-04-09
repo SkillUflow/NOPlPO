@@ -1,12 +1,4 @@
 
-@font-face {
-    font-family: 'Oswald';
-    src: url('../font/Oswald.ttf') format('truetype'); /* Chrome 4+, Firefox 3.5, Opera 10+, Safari 3—5 */
-}  
-
-body{
-    font-family: Oswald;
-}
 
 main{
     height: 100%;
@@ -17,7 +9,6 @@ h1{
 }
 
 #song_button{
-    font-family: Oswald;
     height: 12%;
     width: 80%;
     border-radius: 32px;

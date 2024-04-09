@@ -1,3 +1,19 @@
+
+@font-face {
+    font-family: 'Montserrat';
+    src: url('../font/Montserrat-Regular.ttf') format('truetype'); /* Chrome 4+, Firefox 3.5, Opera 10+, Safari 3—5 */
+}  
+
+
+@font-face {
+    font-family: 'MontserratBold';
+    src: url('../font/Montserrat-Bold.ttf') format('truetype'); /* Chrome 4+, Firefox 3.5, Opera 10+, Safari 3—5 */
+}  
+
+*{
+    font-family:Montserrat;
+}
+
 body{
     background-color: #DCF0FF;
     margin: 0;
@@ -11,5 +27,6 @@ header{
 }
 
 #logo{
+    font-family: MontserratBold;
     font-size: 3rem;
 }

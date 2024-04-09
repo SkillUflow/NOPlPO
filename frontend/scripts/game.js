@@ -1,11 +1,10 @@
 var sectionParoles = document.getElementById("ParolesSection");
 
-
-
+var canWrite = false;
 function generateTrou(parole){
     listeMots = parole.split(" ");
     nbMots = listeMots.length;
-    let placeMot = Math.round(Math.random()*((nbMots-1)-1)+1);
+    let placeMot = Math.round(Math.random()*((nbMots-2)-2)+1);
     if(placeMot==0){placeMot = 1};
     listeMots[placeMot-1]="_".repeat(listeMots[placeMot-1].length);
     listeMots[placeMot+1]="_".repeat(listeMots[placeMot+1].length);
@@ -19,19 +18,19 @@ function generateTrou(parole){
 let entreesClavier = [];
 
 
-function listenKeyboard() {
  
-  document.addEventListener('keydown', function(e) {
-   
+document.addEventListener('keydown', function(e) {
+  if(canWrite){
     if (e.key !== 'Enter') {
-
       entreesClavier.push(e.key);
     } else {
-       console.log(entreesClavier);
+      console.log(entreesClavier);
+      calculateScore(entreesClavier.toString(), 'C\'est deuxième gaou qui est niata oh ah');
       entreesClavier = []; 
     }
-  });
-}
+  }
+});
+
 
 
 
@@ -70,6 +69,7 @@ function afficherParole(){
     else{
         const parolesTrou = generateTrou(paroles[paroleTrou]);
         document.getElementById("paroleCompleter").innerText = parolesTrou;
+        canWrite = true;
     }
     
 }

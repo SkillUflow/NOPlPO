@@ -14,6 +14,8 @@ db.run("CREATE TABLE IF NOT EXISTS songs (id INTEGER PRIMARY KEY, name TEXT, lyr
 
 const dossier = '../lrc_library';
 
+let id_song=0;
+
 // Lire le contenu de chaque fichier dans le dossier
 fs.readdir(dossier, (err, fichiers) => {
   if (err) {
@@ -22,7 +24,6 @@ fs.readdir(dossier, (err, fichiers) => {
   }
 
   // Parcourir chaque fichier dans le dossier
-  let id_song=0;
   fichiers.forEach(fichier => {
     // Lire le contenu du fichier
     fs.readFile(`${dossier}/${fichier}`, 'utf8', (err, data) => {
@@ -64,6 +65,8 @@ fs.readdir(dossier, (err, fichiers) => {
       }
     
         // Formater les données pour les insérer dans la base de données
+        id_song++;
+
         let formated_data = {
           id:id_song,
           title: nom,
@@ -71,7 +74,6 @@ fs.readdir(dossier, (err, fichiers) => {
           lyrics: paroles
         };
         db.run("INSERT INTO songs (name, lyrics) VALUES (?, ?)", [nom, JSON.stringify(formated_data)], function(err) {
-        id_song++;
         if (err) {
           console.error("Erreur lors de l'insertion des données dans la base de données :",err.message );
           return;
@@ -85,7 +87,6 @@ fs.readdir(dossier, (err, fichiers) => {
 
 
 // Fermer la connexion à la base de données
-db.close();
 
 
 // Fermer la connexion à la base de données

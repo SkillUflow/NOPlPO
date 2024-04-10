@@ -1,23 +1,27 @@
 const sqlite3 = require('sqlite3').verbose();
 const fs = require('fs');
+const util = require("util");
 
-// Ouvrir la connexion à la base de données
-let db = new sqlite3.Database('./songs.db');
+async function getFromName(name){
+  let db = new sqlite3.Database('./songs.db');
+  
+  // Promisify the db.all() method
+  const dbAll = util.promisify(db.all.bind(db));
 
-let name = `Rolling In The Deep`
-let sql = "SELECT * FROM 'songs' WHERE name = ' Je te donne'";
-
-
-let names = [];
-
-db.all(sql, [], (err, rows) => {
-  if (err) {
+  let sql = "SELECT * FROM 'songs' WHERE name = ' Je te donne'";
+  
+  try {
+    // Use await with the promisified dbAll
+    const rows = await dbAll(sql, [name]);
+    console.log("NAMES_BOUCLE = ", rows);
+    return rows;
+  } catch (err) {
+    console.error(err);
     throw err;
+  } finally {
+    // Make sure to close the database connection
+    db.close();
   }
-  rows.forEach((row) => {
-    console.log(row);
-    names.push(row);
-  });
-});
+}
 
-console.log(names)
+module.exports = {getFromName};

@@ -16,10 +16,13 @@ app.post('/calculate-score', (req, res) => {
     res.send({score});
 });
 
+
 app.post('/getFromName', async (req, res) => {
   const name = req.body;
-  const song_info = await getFromName(name);
-  console.log(song_info);
+
+  //const song_info = await getFromName(name);
+  let song_info = await getFromName("Rolling in the Deep");
+
   res.send({song_info});
 });
 

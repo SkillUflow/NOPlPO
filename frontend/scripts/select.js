@@ -12,7 +12,6 @@ annee[1].innerText = "1999";
 
 
 
-
 let song_name = " J'ai cherché";
 
 let button = document.getElementById("song_button");
@@ -27,17 +26,17 @@ fetch('/getFromName', {
     // Convert the data to URL encoded string before sending
     body: `name=${encodeURIComponent(song_name)}`
   })
+  
   .then(response => {
     if (!response.ok) {
       // If response is not ok, throw an error
       throw new Error('Network response was not ok');
     }
+    console.log(response);
     return response.json(); // Parse the JSON in the response
   })
   .then(data => {
     console.log(data);
-    //titles[0].innerText = data.name;
-
   })
   .catch(error => {
     // Handle any errors that occurred during the fetch

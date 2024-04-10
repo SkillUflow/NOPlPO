@@ -73,7 +73,7 @@ const paroles = [
 var paroleTrou = 8;
 var lastParoleIndice = 0;
 
-
+var dropedParoles ="";
 
 
 
@@ -83,6 +83,7 @@ function generateTrou(parole){
     nbMots = listeMots.length;
     let placeMot = Math.round(Math.random()*((nbMots-2)-2)+1);
     if(placeMot==0){placeMot = 1};
+    dropedParoles = listeMots[placeMot-1]+" "+listeMots[placeMot]+" "+listeMots[placeMot+1];
     listeMots[placeMot-1]="<span id='fillSpan'>"+"_".repeat(listeMots[placeMot-1].length);
     listeMots[placeMot+1]="_".repeat(listeMots[placeMot+1].length)+"</span>";
     listeMots[placeMot]="_".repeat(listeMots[placeMot].length);
@@ -216,7 +217,13 @@ function visualCheck(){
     function editLetter(){
       console.log(index);
       if(index<typedLettersList.length){
-        typedLettersList[index].style.color="#05E800"
+        console.log(dropedParoles[index]);
+        console.log(typedLettersList[index].innerText);
+        if(dropedParoles[index]==typedLettersList[index].innerText){
+          typedLettersList[index].style.color="#05E800"
+        }else{
+          typedLettersList[index].style.color="#F23E3E"
+        }
         index+=1;
         if(typedLettersList[index].innerText==" "){
           time =0;

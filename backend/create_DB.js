@@ -73,7 +73,7 @@ fs.readdir(dossier, (err, fichiers) => {
           artistId: artiste,
           lyrics: paroles
         };
-        db.run("INSERT INTO songs (name, lyrics) VALUES (?, ?)", [nom, JSON.stringify(formated_data)], function(err) {
+        db.run("INSERT INTO songs (id, name, lyrics) VALUES (?, ?, ?)", [id_song,nom, JSON.stringify(formated_data)], function(err) {
         if (err) {
           console.error("Erreur lors de l'insertion des données dans la base de données :",err.message );
           return;

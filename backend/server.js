@@ -16,6 +16,7 @@ app.post('/calculate-score', (req, res) => {
     res.send({score});
 });
 
+
 app.post('/getFromName', async (req, res) => {
   const name = req.body; // Assurez-vous que ceci extrait correctement la chaîne du nom de la chanson.
   

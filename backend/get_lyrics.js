@@ -6,8 +6,11 @@ let db = new sqlite3.Database('./songs.db');
 
 // Créer une table
 db.serialize(function() {
-  db.run("CREATE TABLE IF NOT EXISTS songs (id INTEGER PRIMARY KEY, name TEXT, lyrics TEXT)");
+//supprimer la table song si elle existe
+db.run("CREATE TABLE IF NOT EXISTS songs (id INTEGER PRIMARY KEY, name TEXT, lyrics TEXT)");
 });
+
+
 
 
 const dossier = '../lrc_library';
@@ -51,18 +54,15 @@ fs.readdir(dossier, (err, fichiers) => {
         let lyrics = match[2];
         // Transformer les timestamp en durée d'apparition en millisecondes
         let timestampParts = timestamp.split(/:|\./);
-        let hours = parseInt(timestampParts[0]);
-        let minutes = parseInt(timestampParts[1]);
-        let seconds = parseInt(timestampParts[2]);
-        let milliseconds = parseInt(timestampParts[3]);
-        console.log(hours, minutes, seconds, milliseconds);
-        let mstime = (hours * 3600 + minutes * 60 + seconds) * 1000 + milliseconds;
+        let minutes = parseInt(timestampParts[0]);
+        let seconds = parseInt(timestampParts[1]);
+        let milliseconds = parseInt(timestampParts[2]);
+        let mstime = (minutes * 60 + seconds) * 1000 + milliseconds;
         let duration = mstime - previousMstime; // Calculer la durée d'apparition
         previousMstime = mstime; // Mettre à jour le timestamp précédent pour la prochaine itération
         // Ajouter les paroles et le timestamp dans paroles
         paroles.push({ lyrics, duration });
       }
-      console.log(paroles);
     
         // Formater les données pour les insérer dans la base de données
         let formated_data = {
@@ -73,7 +73,10 @@ fs.readdir(dossier, (err, fichiers) => {
         };
         db.run("INSERT INTO songs (id, name, lyrics) VALUES (?, ?, ?)", [id_song, nom, JSON.stringify(formated_data)], function(err) {
         id_song++;
-
+        if (err) {
+          console.error("Erreur lors de l'insertion des données dans la base de données :", err);
+          return;
+        }
       });
       
       

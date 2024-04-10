@@ -6,7 +6,6 @@ let db = new sqlite3.Database('./songs.db');
 
 // Créer une table
 db.serialize(function() {
-//supprimer la table song si elle existe
 db.run("CREATE TABLE IF NOT EXISTS songs (id INTEGER PRIMARY KEY, name TEXT, lyrics TEXT)");
 });
 
@@ -71,10 +70,10 @@ fs.readdir(dossier, (err, fichiers) => {
           artistId: artiste,
           lyrics: paroles
         };
-        db.run("INSERT INTO songs (id, name, lyrics) VALUES (?, ?, ?)", [id_song, nom, JSON.stringify(formated_data)], function(err) {
+        db.run("INSERT INTO songs (name, lyrics) VALUES (?, ?)", [nom, JSON.stringify(formated_data)], function(err) {
         id_song++;
         if (err) {
-          console.error("Erreur lors de l'insertion des données dans la base de données :", err);
+          console.error("Erreur lors de l'insertion des données dans la base de données :",err.message );
           return;
         }
       });
@@ -84,29 +83,6 @@ fs.readdir(dossier, (err, fichiers) => {
   });
 });
 
-//Bon apparemment c'est bon, faisons un test et affichons les paroles de ne me quitte pas
-const nomChanson = " Ne me quitte pas";
-
-// Requête SQL pour sélectionner les paroles de la chanson spécifique
-const sql = "SELECT lyrics FROM songs WHERE name = ?";
-
-// Exécution de la requête SQL avec le nom de la chanson comme paramètre
-db.get(sql, [nomChanson], (err, row) => {
-  if (err) {
-    console.error("Erreur lors de la récupération des paroles de la chanson :", err);
-    return;
-  }
-
-  if (!row) {
-    console.log("Aucune chanson trouvée avec le nom spécifié :", nomChanson);
-    return;
-  }
-
-  // Affichage des paroles de la chanson
-  const paroles = JSON.parse(row.lyrics);
-  console.log("Paroles de la chanson", nomChanson, ":");
-  console.log(paroles);
-});
 
 // Fermer la connexion à la base de données
 db.close();

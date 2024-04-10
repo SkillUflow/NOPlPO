@@ -17,11 +17,20 @@ app.post('/calculate-score', (req, res) => {
 });
 
 app.post('/getFromName', async (req, res) => {
-  const name = req.body;
-  const song_info = await getFromName(name);
-  console.log(song_info);
-  res.send({song_info});
+  const name = req.body; // Assurez-vous que ceci extrait correctement la chaîne du nom de la chanson.
+  
+  try {
+    // Attendez le résultat avant de continuer.
+    const song_info = await getFromName(name);
+    console.log(song_info);
+    res.send({ song_info });
+  } catch (error) {
+    console.error(error);
+    // Gestion des erreurs: envoyez une réponse d'erreur au client.
+    res.status(500).send({ error: 'Une erreur est survenue' });
+  }
 });
+
 
 app.listen(port, () => {
   console.log(`NOPlPO app listening at http://localhost:${port}`);

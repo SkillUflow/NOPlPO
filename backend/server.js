@@ -4,6 +4,7 @@ const app = express();
 const { compareLyrics } = require('./lyrics-check.js');
 const { getFromName } = require('./get_from_name.js');
 const { getAllSongsFromDB } = require('./get_from_server.js');
+const { addNewSong } = require('./add_new_song.js');
 
 const port = 3000;
 
@@ -39,8 +40,6 @@ app.post('/getFromName', async (req, res) => {
 app.post('/getAllSongsFromDB', async (req, res) => {  
   try {
     const songs = await getAllSongsFromDB();
-    console.log("Nous y sommes");
-    console.log(songs);
     res.send({ songs });
 
   } catch (error) {
@@ -49,6 +48,18 @@ app.post('/getAllSongsFromDB', async (req, res) => {
   }
 });
 
+
+app.post('/addNewSong', (req, res) => {
+  const {name, artist, year, genre, lyrics} = req.body;
+  // Ajoutez le code pour ajouter une nouvelle chanson à la base de données
+  try{
+    addNewSong(name, artist, year, genre, lyrics);
+    res.send({message: 'Chanson ajoutée avec succès'});
+  } catch(error){
+    console.error(error);
+    res.status(500).send({error: 'Une erreur est survenue'});
+  }
+});
 
 app.listen(port, () => {
   console.log(`NOPlPO app listening at http://localhost:${port}`);

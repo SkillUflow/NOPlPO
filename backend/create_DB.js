@@ -11,7 +11,6 @@ db.run("CREATE TABLE IF NOT EXISTS songs (id INTEGER PRIMARY KEY, name TEXT, art
 
 
 
-
 const dossier = '../lrc_library';
 
 let id_song=0;
@@ -91,6 +90,17 @@ fs.readdir(dossier, (err, fichiers) => {
           lyrics: paroles
         };
         //plus qu'à insérer les données dans la base de données
+        //avant d'insérer, on vérifie qu'une chanson portant ce nom n'existe pas déjà
+        db.get("SELECT * FROM songs WHERE name = ?", [nom], function(err, row) {
+          if (err) {
+            console.error("Erreur lors de la vérification de l'existence de la chanson :",err.message );
+            return;
+          }
+          if (row) {
+            console.error(`La chanson ${nom} existe déjà dans la base de données`);
+            return;
+          }
+        });
         db.run("INSERT INTO songs (id, name, artist, year, offset, genre, lyrics) VALUES (?, ?, ?, ?, ?, ?, ?)", [id_song,nom,artiste, annee,offset, genre, JSON.stringify(formated_data)], function(err) {
         if (err) {
           console.error("Erreur lors de l'insertion des données dans la base de données :",err.message );

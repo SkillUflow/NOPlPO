@@ -6,21 +6,14 @@
 <body>
     <h1>Add Song</h1>
     
-    <form>
-        <label for="txtFile">Text File:</label>
-        <input type="file" id="txtFile" name="txtFile"><br><br>
-        
-        <label for="mp3File">MP3 File:</label>
-        <input type="file" id="mp3File" name="mp3File"><br><br>
-        
-        <button onclick="readFile()">Submit</button>
+    <form action="http://localhost:3000/add_song" method="post" enctype="multipart/form-data">
+        <label for="songFile">Sélectionnez un fichier de chanson :</label>
+        <input type="file" id="songFile" name="songFile">
+        <br>
+        <input type="submit" value="Télécharger">
     </form>
 
-    <script>
-        function readFile() {
-            // Code to handle file processing goes here
-        }
-    </script>
+
     
 </body>
 </html>

@@ -6,7 +6,7 @@ var paroles = []
 
 
 
-let song_name = "balance ton quoi";
+let song_name = "Rolling in the Deep";
 continuePlaying = false;
 
 // Use fetch API to send a POST request to the server
@@ -48,7 +48,8 @@ async function GestionParoles(songData){
 
 
   //offcet
-  musique.currentTime = 2;
+  console.log(songData["song_info"].offset);
+  musique.currentTime = Math.round((songData["song_info"].offset)/1000);
   document.getElementById('musique').play();
   afficherParole();   
 }

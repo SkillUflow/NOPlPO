@@ -11,7 +11,7 @@ db.run("CREATE TABLE IF NOT EXISTS songs (id INTEGER PRIMARY KEY, name TEXT, art
 
 
 
-const dossier = '../lrc_library';
+const dossier = 'lrc_library';
 
 let id_song=0;
 

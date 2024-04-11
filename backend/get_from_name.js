@@ -5,7 +5,7 @@ const util = require("util");
 async function getFromName(name) {
   let db = new sqlite3.Database('./songs.db');
 
-  let sql = "SELECT lyrics FROM 'songs' WHERE name = ?";
+  let sql = "SELECT * FROM 'songs' WHERE name = ?";
 
   return new Promise((resolve, reject) => {
     db.get(sql, [name.name], (err, row) => {

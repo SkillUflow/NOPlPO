@@ -85,6 +85,7 @@ fs.readdir(dossier, (err, fichiers) => {
           artistId: artiste,
           lyrics: paroles
         };
+        //plus qu'à insérer les données dans la base de données
         db.run("INSERT INTO songs (id, name, artist, year, genre, lyrics) VALUES (?, ?, ?, ?, ?, ?)", [id_song,nom,artiste, annee, genre, JSON.stringify(formated_data)], function(err) {
         if (err) {
           console.error("Erreur lors de l'insertion des données dans la base de données :",err.message );
@@ -96,9 +97,3 @@ fs.readdir(dossier, (err, fichiers) => {
     });
   });
 });
-
-
-// Fermer la connexion à la base de données
-
-
-// Fermer la connexion à la base de données

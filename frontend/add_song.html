@@ -7,11 +7,20 @@
     <h1>Add Song</h1>
     
     <form>
-        <label for="songFile">Select a song file:</label>
-        <input type="file" id="songFile" name="songFile">
-        <br>
-        <input type="submit" value="Upload">
+        <label for="txtFile">Text File:</label>
+        <input type="file" id="txtFile" name="txtFile"><br><br>
+        
+        <label for="mp3File">MP3 File:</label>
+        <input type="file" id="mp3File" name="mp3File"><br><br>
+        
+        <button onclick="readFile()">Submit</button>
     </form>
+
+    <script>
+        function readFile() {
+            // Code to handle file processing goes here
+        }
+    </script>
     
 </body>
 </html>

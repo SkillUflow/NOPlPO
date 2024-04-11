@@ -6,7 +6,7 @@ let db = new sqlite3.Database('./songs.db');
 
 // Créer une table
 db.serialize(function() {
-db.run("CREATE TABLE IF NOT EXISTS songs (id INTEGER PRIMARY KEY, name TEXT, lyrics TEXT)");
+db.run("CREATE TABLE IF NOT EXISTS songs (id INTEGER PRIMARY KEY, name TEXT, artist TEXT, year TEXT, genre TEXT,lyrics TEXT)");
 });
 
 
@@ -43,6 +43,18 @@ fs.readdir(dossier, (err, fichiers) => {
       // Extraire l'artiste de la chanson
       let artisteMatch = data.match(/\[ar:(.*?)\]/);
       let artiste = artisteMatch && artisteMatch[1] ? artisteMatch[1] : '';
+      
+      
+      //Extraire le genre de la chanson
+      //TODO: rajouter les genres aux fichiers lrc
+
+      let genreMatch = data.match(/\[ge:(.*?)\]/);
+      let genre = genreMatch && genreMatch[1] ? genreMatch[1] : '';
+
+      //Extraire l'année de la chanson
+      //TODO: rajouter les années aux fichiers lrc
+      let anneeMatch = data.match(/\[ye:(.*?)\]/);
+      let annee = anneeMatch && anneeMatch[1] ? anneeMatch[1] : '';
 
       // Extraire les paroles et les timestamp associés
       const regexLigne = /\[(\d+:\d+\.\d+)\](.*)/g;
@@ -73,7 +85,7 @@ fs.readdir(dossier, (err, fichiers) => {
           artistId: artiste,
           lyrics: paroles
         };
-        db.run("INSERT INTO songs (id, name, lyrics) VALUES (?, ?, ?)", [id_song,nom, JSON.stringify(formated_data)], function(err) {
+        db.run("INSERT INTO songs (id, name, artist, year, genre, lyrics) VALUES (?, ?, ?, ?, ?, ?)", [id_song,nom,artiste, annee, genre, JSON.stringify(formated_data)], function(err) {
         if (err) {
           console.error("Erreur lors de l'insertion des données dans la base de données :",err.message );
           return;

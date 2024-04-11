@@ -51,7 +51,6 @@ fetch('/getAllSongsFromDB', {
     'Content-Type': 'application/x-www-form-urlencoded',
   }
 })
-
 .then(response => {
   if (!response.ok) {
     // If response is not ok, throw an error
@@ -68,10 +67,8 @@ fetch('/getAllSongsFromDB', {
 })
 
 async function afficherSongsInfos(data){
-  console.log(data["songs"]);
 
   data["songs"].forEach(song => {
-    console.log(song["name"]);
     
     var current_songButton= document.createElement("button");
     current_songButton.className = "song_button";
@@ -99,6 +96,12 @@ async function afficherSongsInfos(data){
     current_songButton.appendChild(current_songYear);
 
     songsContainer.appendChild(current_songButton);
+    current_songButton.addEventListener("click",function(){openSong(song["name"])});
    
   });
+}
+
+function openSong(songName){
+  localStorage.setItem("songName",songName);
+  window.location.href = "game.html";
 }

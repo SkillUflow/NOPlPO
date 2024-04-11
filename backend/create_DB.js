@@ -6,9 +6,8 @@ let db = new sqlite3.Database('./songs.db');
 
 // Créer une table
 db.serialize(function() {
-db.run("CREATE TABLE IF NOT EXISTS songs (id INTEGER PRIMARY KEY, name TEXT, lyrics TEXT)");
+db.run("CREATE TABLE IF NOT EXISTS songs (id INTEGER PRIMARY KEY, name TEXT, artist TEXT, year TEXT, offset INT, genre TEXT,lyrics TEXT)");
 });
-
 
 
 
@@ -43,6 +42,23 @@ fs.readdir(dossier, (err, fichiers) => {
       // Extraire l'artiste de la chanson
       let artisteMatch = data.match(/\[ar:(.*?)\]/);
       let artiste = artisteMatch && artisteMatch[1] ? artisteMatch[1] : '';
+      
+      
+      //Extraire le genre de la chanson
+      //TODO: rajouter les genres aux fichiers lrc
+
+      let genreMatch = data.match(/\[ge:(.*?)\]/);
+      let genre = genreMatch && genreMatch[1] ? genreMatch[1] : '';
+
+      //Extraire l'année de la chanson
+      //TODO: rajouter les années aux fichiers lrc
+      let anneeMatch = data.match(/\[ye:(.*?)\]/);
+      let annee = anneeMatch && anneeMatch[1] ? anneeMatch[1] : '';
+
+      //Extraire l'offset de la chanson
+      //TODO: rajouter les offsets aux fichiers lrc
+      let offsetMatch = data.match(/\[of:(.*?)\]/);
+      let offset = offsetMatch && offsetMatch[1] ? offsetMatch[1] : 0;
 
       // Extraire les paroles et les timestamp associés
       const regexLigne = /\[(\d+:\d+\.\d+)\](.*)/g;
@@ -73,7 +89,19 @@ fs.readdir(dossier, (err, fichiers) => {
           artistId: artiste,
           lyrics: paroles
         };
-        db.run("INSERT INTO songs (id, name, lyrics) VALUES (?, ?, ?)", [id_song,nom, JSON.stringify(formated_data)], function(err) {
+        //plus qu'à insérer les données dans la base de données
+        //avant d'insérer, on vérifie qu'une chanson portant ce nom n'existe pas déjà
+        db.get("SELECT * FROM songs WHERE name = ?", [nom], function(err, row) {
+          if (err) {
+            console.error("Erreur lors de la vérification de l'existence de la chanson :",err.message );
+            return;
+          }
+          if (row) {
+            console.error(`La chanson ${nom} existe déjà dans la base de données`);
+            return;
+          }
+        });
+        db.run("INSERT INTO songs (id, name, artist, year, offset, genre, lyrics) VALUES (?, ?, ?, ?, ?, ?, ?)", [id_song,nom,artiste, annee,offset, genre, JSON.stringify(formated_data)], function(err) {
         if (err) {
           console.error("Erreur lors de l'insertion des données dans la base de données :",err.message );
           return;
@@ -84,9 +112,3 @@ fs.readdir(dossier, (err, fichiers) => {
     });
   });
 });
-
-
-// Fermer la connexion à la base de données
-
-
-// Fermer la connexion à la base de données

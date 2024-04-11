@@ -1,0 +1,37 @@
+main{
+    height: 100%;
+}
+
+h1{
+    text-align: center;
+}
+
+#artistsContainer{
+    display:flex;
+    justify-self: left;
+}
+
+.button{
+    height: 10rem;
+    width: 10rem;
+
+    border-radius: 8px;
+    border: solid white 5px;
+    margin-left : 10px;
+    margin-bottom: 20px;
+    font-size: 2rem;
+    color: white;
+
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+
+}
+.artist_btn{
+    background: linear-gradient(0deg, rgb(0, 174, 9) 0%, rgb(0, 102, 5) 100%);
+}
+
+.epoch_btn{
+    background: linear-gradient(0deg, rgb(174, 119, 0) 0%, rgb(102, 80, 0) 100%);
+}

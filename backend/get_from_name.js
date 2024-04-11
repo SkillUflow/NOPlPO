@@ -22,6 +22,4 @@ async function getFromName(name) {
   });
 }
 
-
-
 module.exports = {getFromName};

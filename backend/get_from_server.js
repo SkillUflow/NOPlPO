@@ -1,20 +1,24 @@
 const sqlite3 = require('sqlite3').verbose();
 const fs = require('fs');
+const util = require("util");
 
-// Ouvrir la connexion à la base de données
-let db = new sqlite3.Database('./songs.db');
+async function getAllSongsFromDB() {
+  let db = new sqlite3.Database('./songs.db');
 
+  let sql = "SELECT * FROM 'songs'";
 
-let sql = `SELECT * FROM 'songs' `;
-
-let names = [];
-
-db.all(sql, [], (err, rows) => {
-  if (err) {
-    throw err;
-  }
-  rows.forEach((row) => {
-    names.push(row);
+  return new Promise((resolve, reject) => {
+    db.all(sql, [], (err, data) => {
+      db.close();
+      if (err) {
+        console.error(err.message);
+        reject(err); 
+      } else {
+        console.log("DATA :", data);
+        resolve(data); 
+      }
+    });
   });
-});
+}
 
+module.exports = {getAllSongsFromDB};

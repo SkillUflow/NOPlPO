@@ -8,7 +8,7 @@ h1{
     text-align: center;
 }
 
-#song_button{
+.song_button{
     height: 12%;
     width: 80%;
     border-radius: 32px;
@@ -25,11 +25,11 @@ h1{
     flex-direction: column;
 }
 
-#song_button p{
+.song_button p{
     margin: 0;
 }
 
-#emphase{
+.emphase{
     color:rgb(165, 205, 251);
 }
 

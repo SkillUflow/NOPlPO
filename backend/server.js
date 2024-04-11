@@ -3,6 +3,7 @@ const bodyParser = require('body-parser');
 const app = express();
 const { compareLyrics } = require('./lyrics-check.js');
 const { getFromName } = require('./get_from_name.js');
+const { getAllSongsFromDB } = require('./get_from_server.js');
 
 const port = 3000;
 
@@ -28,6 +29,22 @@ app.post('/getFromName', async (req, res) => {
   } catch (error) {
     console.error(error);
     // Gestion des erreurs: envoyez une réponse d'erreur au client.
+    res.status(500).send({ error: 'Une erreur est survenue' });
+  }
+});
+
+
+// Louis tient à dire qu'il a fait ça tout seul comme un grand.
+// On garde espoir qu'il soit un jour capable d'utiliser Git correctement.
+app.post('/getAllSongsFromDB', async (req, res) => {  
+  try {
+    const songs = await getAllSongsFromDB();
+    console.log("Nous y sommes");
+    console.log(songs);
+    res.send({ songs });
+
+  } catch (error) {
+    console.error(error);
     res.status(500).send({ error: 'Une erreur est survenue' });
   }
 });

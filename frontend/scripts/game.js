@@ -6,7 +6,8 @@ var paroles = []
 
 
 
-let song_name = " La Quête";
+let song_name = "balance ton quoi";
+continuePlaying = false;
 
 // Use fetch API to send a POST request to the server
 fetch('/getFromName', {
@@ -37,15 +38,17 @@ fetch('/getFromName', {
 
 
 async function GestionParoles(songData){
-console.log(songData);
+  console.log(songData);
   let songDataJson = JSON.parse(songData["song_info"].lyrics);
-  console.log("ok");
-  console.log(songDataJson.lyrics);
   paroles = songDataJson.lyrics;
+  console.log(songDataJson);
+  document.getElementById("musique").src="assets/mp3_library/"+songDataJson.artistId.trim()+" - "+songDataJson.title.trim()+".mp3";
+  console.log(document.getElementById("musique").src);
   
 
 
-
+  //offcet
+  musique.currentTime = 2;
   document.getElementById('musique').play();
   afficherParole();   
 }
@@ -60,6 +63,7 @@ var dropedParoles ="";
 
 var canWrite = false;
 function generateTrou(parole){
+
     listeMots = parole.split(" ");
     nbMots = listeMots.length;
     let placeMot = Math.round(Math.random()*((nbMots-2)-2)+1);
@@ -119,7 +123,7 @@ document.addEventListener('keydown', function(e) {
 
 function afficherParole(){
   var timeout = 1000;
-    if(lastParoleIndice<paroleTrou){
+    if(lastParoleIndice!=paroleTrou || continuePlaying == true){
         let j =0;
         timeout = paroles[lastParoleIndice].duration;
         if(lastParoleIndice<5){
@@ -214,6 +218,11 @@ function visualCheck(){
         setTimeout(editLetter,time);
       }else{
         document.getElementById("parolesVraies").innerText = dropedParoles
+        document.getElementById('musique').play();
+        document.getElementById('musique').volume = 0.25
+        continuePlaying =true;
+
+        afficherParole();
       }
 
        

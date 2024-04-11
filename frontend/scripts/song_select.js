@@ -1,45 +1,4 @@
-// POUR AYMERIC --------------- 😘😘😘😘😘😘😘😘😘😘😘😘😘😘😘😘😘😘😘😘😘
-/*
-let song_name = " J'ai cherché";
 
-// Use fetch API to send a POST request to the server
-fetch('/getFromName', {
-    method: 'POST', // Specify the method
-    headers: {
-      // Content-Type header is important for server to know how to parse the body
-      'Content-Type': 'application/x-www-form-urlencoded',
-    },
-    // Convert the data to URL encoded string before sending
-    body: `name=${encodeURIComponent(song_name)}`
-  })
-  
-  .then(response => {
-    if (!response.ok) {
-      // If response is not ok, throw an error
-      throw new Error('Network response was not ok');
-    }
-    return response.json(); // Parse the JSON in the response
-  })
-  .then(data => {
-    AfficherData(data);
-  })
-  .catch(error => {
-    // Handle any errors that occurred during the fetch
-    console.error('Error fetching data: ', error);
-  })
-
-
-
-async function AfficherData(songData){
-
-  let songDataJson = JSON.parse(songData["song_info"]["lyrics"]);
-  console.log(songDataJson);
-
-  titles[0].innerText = songDataJson["title"];
-  artist[0].innerText = songDataJson["artistId"];
-  annee[0].innerText = "2000";
-}
-*/
 
 let songsContainer = document.getElementById("songsContainer");
 

@@ -49,18 +49,6 @@ app.post('/getAllSongsFromDB', async (req, res) => {
 });
 
 
-app.post('/addNewSong', (req, res) => {
-  const {name, artist, year, genre, lyrics} = req.body;
-  // Ajoutez le code pour ajouter une nouvelle chanson à la base de données
-  try{
-    addNewSong(name, artist, year, genre, lyrics);
-    res.send({message: 'Chanson ajoutée avec succès'});
-  } catch(error){
-    console.error(error);
-    res.status(500).send({error: 'Une erreur est survenue'});
-  }
-});
-
 app.listen(port, () => {
   console.log(`NOPlPO app listening at http://localhost:${port}`);
 });

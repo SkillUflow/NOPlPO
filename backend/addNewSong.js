@@ -35,8 +35,7 @@ function addFile(fileText,fileMusic, callback) {
     else if (!fileContent.includes('[ar:') || !fileContent.includes('[ti:') || !fileContent.includes('[00:')) {
         console.error('File does not contain artist, title or lyrics');
         //on enregistre le nom de la chanson et de l'artiste
-        const artist = fileContent.match(/\[ar:(.*?)\]/)[1];
-        const title = fileContent.match(/\[ti:(.*?)\]/)[1];
+
         if(callback) callback('File does not contain artist, title or lyrics'); 
         return;
     }
@@ -58,7 +57,13 @@ function addFile(fileText,fileMusic, callback) {
         return;
     }
     //on ajoute le fichier dans le répositoire
-     else {fs.copyFile(fileMusic.path, `../frontend/assets/mp3_library/${artist} - ${title}.mp3`, (err) => {
+     else {
+        const artist = fileContent.match(/\[ar:(.*?)\]/)[1];
+        const title = fileContent.match(/\[ti:(.*?)\]/)[1];
+        console.log(artist);
+        console.log(title);
+        fs.copyFile(fileMusic.path, `../frontend/assets/mp3_library/${artist} - ${title}.mp3`, (err) => {
+        
         if (err) { 
             console.error(err); 
             if(callback) callback(err); 
@@ -66,7 +71,7 @@ function addFile(fileText,fileMusic, callback) {
         } 
         console.log('File Music saved successfully!'); 
     });}
-
+    return;
     // bon bah voila, c'est ajouté. On a plus qu'à laisser les admins vérifier que c'est bien une chanson et pas un truc chelou; puis ils n'auront qu'à utiliser create_DB pour mettre la base à jour !
 }
 module.exports = addFile;

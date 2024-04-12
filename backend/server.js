@@ -106,6 +106,7 @@ app.post('/add_song', upload.fields([
       console.error("Erreur lors de l'ajout des fichiers :", error);
       res.status(500).send({ error: error.message });
   }
+  res.redirect('/landing.html');
 });
 
 app.listen(port, () => {

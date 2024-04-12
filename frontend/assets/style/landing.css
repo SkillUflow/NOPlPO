@@ -1,6 +1,7 @@
 h1{
     text-align: center;
     font-size: 4rem;
+    font-weight :700;
 }
 
 
@@ -28,4 +29,35 @@ h1{
 
 .btn:hover{
     background: linear-gradient(0deg, rgb(1, 24, 82) 0%, rgba(27, 69, 116, 0.75) 100%);
+}
+
+p{
+    text-align: justify;
+    border: 10px;
+    position: relative;
+    top: 20px;
+    left: 50px; 
+    max-width: 90%;
+}
+
+#imgCont{
+    height:15rem;
+    width:15rem;
+
+    float: left;
+    margin: 30px 10px 10px 10px;
+    text-align: center;
+    font-style: italic;
+    align-self: center;
+}
+
+#img1{
+    display:block;
+    align-self: center;
+    margin: 0 auto;
+    height:100%;
+    width:auto;
+    max-height: 100%;
+    max-width: 100%;
+
 }

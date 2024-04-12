@@ -7,7 +7,8 @@
 
 @font-face {
     font-family: 'MontserratBold';
-    src: url('../font/Montserrat-Bold.ttf') format('truetype'); /* Chrome 4+, Firefox 3.5, Opera 10+, Safari 3—5 */
+    /*src: url('../font/Montserrat-Bold.ttf') format('truetype');*/ /* Chrome 4+, Firefox 3.5, Opera 10+, Safari 3—5 */
+    src: url('../font/Oswald.ttf') format('truetype'); /* Chrome 4+, Firefox 3.5, Opera 10+, Safari 3—5 */
 }  
 
 *{

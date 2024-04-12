@@ -24,19 +24,16 @@ fetch('/getAllSongsFromDB', {
 async function afficherSongsInfos(data){
 
   let artistArray = {};
-  let epochArray = {};
-  let genreArray = {};
+  let artistsContainer = document.getElementsByClassName("buttonContainer")[0];
 
   // AFFICHAGE PAR ARTISTE
   {
   data["songs"].forEach(song => {
 
-    let artistsContainer = document.getElementById("artistsContainer");
-
     if (artistArray[song["artist"]]) {
-      artistArray[song["artist"]].push(song["name"]);
+      artistArray[song["artist"]].push(song);
     } else {
-      artistArray[song["artist"]] = [song["name"]];
+      artistArray[song["artist"]] = [song];
     }
 
   });
@@ -51,15 +48,17 @@ async function afficherSongsInfos(data){
       
       artistsContainer.appendChild(current_ArtistButton);
 
+      current_ArtistButton.addEventListener("click",function(){toGame(data["songs"],0,artist)});
     }
   }
   }
+  
+  let epochArray = {};
+  let epochContainer = document.getElementsByClassName("buttonContainer")[1];
 
-  // AFFICHAGE PAR EPOQUE - à faire quand les bonnes années auront été mises
+  // AFFICHAGE PAR EPOQUE
   {
   data["songs"].forEach(song => {
-
-    let aepochContainer = document.getElementById("epochContainer");
 
     if (epochArray[song["year"]]) {
       epochArray[song["year"]].push(song);
@@ -67,49 +66,107 @@ async function afficherSongsInfos(data){
       epochArray[song["year"]] = [song];
     }
   });
-  console.log(epochArray); 
+
+  const groupedData = {};
+
+  for (const year in epochArray) {
+    const decade = Math.floor(year / 10) * 10;
+    if (!groupedData[decade]) {
+      groupedData[decade] = [];
+    }
+    groupedData[decade] = groupedData[decade].concat(epochArray[year]);
   }
 
-  // Idem pour le GENRE
+  for (let decade in groupedData) {
+    let valeur = groupedData[decade];
+    
+    if(valeur.length > 1){
+
+      var current_EpochButton = document.createElement("button");
+      current_EpochButton.className = "button epoch_btn";
+
+      if(decade < 2000){
+        let to_text_decade = decade.slice(2);
+        current_EpochButton.innerText = "Années " + to_text_decade;
+      }else{
+        current_EpochButton.innerText = "Années " + decade;
+      }
+      
+      epochContainer.appendChild(current_EpochButton);
+
+      current_EpochButton.addEventListener("click",function(){toGame(groupedData[decade],1)});
+    }
+  }
+
+  }
+
+  let genreArray = {};
+  let genreContainer = document.getElementsByClassName("buttonContainer")[2];
+
+  // AFFICHAGE PAR GENRE
+  {
+
+  data["songs"].forEach(song => {
+
+    let genreContainer = document.getElementById("genreContainer");
+
+    if (genreArray[song["genre"]]) {
+      genreArray[song["genre"]].push(song);
+    } else {
+      genreArray[song["genre"]] = [song];
+    }
+  });
+
+
+  for (let genre in genreArray) {
+    let valeur = genreArray[genre];
+
+    if(valeur.length >1){
+      var current_genreButton = document.createElement("button");
+      current_genreButton.className = "button genre_btn";
+      current_genreButton.innerText = genre;
+      genreContainer.appendChild(current_genreButton);
+      current_genreButton.addEventListener("click",function(){toGame(valeur,2,genre)});
+      }
+    }
+  
+  }
+
 }
 
+function toGame(data, type, param=0){
+  // data : l'ensemble des morceaux 
+  // type : est-ce qu'on souhaite un morceau selon son artiste, son année ou son style
+  // param : le nom de l'artiste/l'année/le style
 
+  let song_to_guess;
+  let to_choose = [];
 
+  switch(type){
+    case 0: // Par artiste
+    data.forEach(song => {
+      if(song["artist"]==param){
+        to_choose.push(song["name"]);
+      }
+    });
+    break;
 
+    case 1: // Par époque
+    data.forEach(song => {
+       to_choose.push(song["name"]);
+    });
+    break;
 
-
-
-
-
-
-/// TO DELETE : FOR TESTING
-let typedLyrics = "APAGNAN!!";
-let correctLyrics = "apagnan";
-
-fetch('/calculate-score', {
-  method: 'POST', // Specify the method
-  headers: {
-    // Content-Type header is important for server to know how to parse the body
-    'Content-Type': 'application/x-www-form-urlencoded',
-  },
-  // Convert the data to URL encoded string before sending
-  body: `typed_lyrics=${encodeURIComponent(typedLyrics)}&correct_lyrics=${encodeURIComponent(correctLyrics)}`
-})
-.then(response => {
-  if (!response.ok) {
-    // If response is not ok, throw an error
-    throw new Error('Network response was not ok');
+    case 2: // Par genre
+    data.forEach(song => {
+      if(song["genre"]==param){
+        to_choose.push(song["name"]);
+      }
+    });
+    break;
   }
-  return response.json(); // Parse the JSON in the response
-})
-.then(data => {
-  // Handle the data (the score)
-
-
-  // For example, if you want to display the score in an element with id="score"
-  console.log("Score = ", data.score);
-})
-.catch(error => {
-  // Handle any errors that occurred during the fetch
-  console.error('Error fetching data: ', error);
-});
+  
+  song_to_guess = to_choose[Math.floor(Math.random() * to_choose.length)];
+  localStorage.setItem("songName",song_to_guess);
+  window.location.href = "game.html";
+}

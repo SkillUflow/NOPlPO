@@ -6,7 +6,7 @@ var paroles = []
 
 
 
-let song_name = "Rolling in the Deep";
+let song_name = " Un jour au mauvais endroit";
 continuePlaying = false;
 
 // Use fetch API to send a POST request to the server
@@ -35,27 +35,41 @@ fetch('/getFromName', {
     console.error('Error fetching data: ', error);
   })
 
-
+var paroleTrou = 0;
 
 async function GestionParoles(songData){
   console.log(songData);
   let songDataJson = JSON.parse(songData["song_info"].lyrics);
   paroles = songDataJson.lyrics;
-  console.log(songDataJson);
   document.getElementById("musique").src="assets/mp3_library/"+songDataJson.artistId.trim()+" - "+songDataJson.title.trim()+".mp3";
   console.log(document.getElementById("musique").src);
   
+  //choix de la ligne a trouer
+
+  do{
+  paroleTrou = Math.floor(Math.random() * (10 - 4 + 1)) + 4;
+  }while(paroles[paroleTrou].lyrics.split(" ").length <=3);
 
 
-  //offcet
-  console.log(songData["song_info"].offset);
-  musique.currentTime = Math.round((songData["song_info"].offset)/1000);
-  document.getElementById('musique').play();
-  afficherParole();   
+
+ if(songData["song_info"].offset>=0){
+    musique.currentTime = (songData["song_info"].offset)/1000;
+ }
+ 
+
+
+  afficherParole();
+  if(songData["song_info"].offset<0){
+    musTime = -songData["song_info"].offset;
+  }
+  setTimeout(launchMusique,musTime) 
 }
 
 
-var paroleTrou = Math.floor(Math.random() * (10 - 4 + 1)) + 4;
+function launchMusique(){
+  document.getElementById('musique').play();
+}
+
 var lastParoleIndice = 0;
 
 var dropedParoles ="";
@@ -69,11 +83,11 @@ function generateTrou(parole){
     nbMots = listeMots.length;
     let placeMot = Math.round(Math.random()*((nbMots-2)-2)+1);
     if(placeMot==0){placeMot = 1};
+
     dropedParoles = listeMots[placeMot-1]+" "+listeMots[placeMot]+" "+listeMots[placeMot+1];
     listeMots[placeMot-1]="<span id='fillSpan'>"+"_".repeat(listeMots[placeMot-1].length);
     listeMots[placeMot+1]="_".repeat(listeMots[placeMot+1].length)+"</span>";
     listeMots[placeMot]="_".repeat(listeMots[placeMot].length);
-    console.log(listeMots);
     stringMots = listeMots.join(' ')
     return stringMots;
 
@@ -205,7 +219,7 @@ function visualCheck(){
       console.log(index);
       if(index<typedLettersList.length){
         document.getElementById("parolesVraies").innerText = dropedParoles.slice(0,index+1);
-        if(dropedParoles[index].toLocaleLowerCase()==typedLettersList[index].innerText.toLocaleLowerCase()){
+        if(dropedParoles[index]&&typedLettersList[index]&&dropedParoles[index].toLocaleLowerCase()==typedLettersList[index].innerText.toLocaleLowerCase()){
           typedLettersList[index].style.color="#05E800"
         }else{
           typedLettersList[index].style.color="#F23E3E"

@@ -53,7 +53,6 @@ async function GestionParoles(songData){
  if(songData["song_info"].offset>=0){
     musique.currentTime = (songData["song_info"].offset)/1000;
  }
- 
 
  musTime = 0;
   afficherParole();

@@ -29,6 +29,10 @@ h1{
     margin: 0;
 }
 
+.song_button:hover{
+    background: linear-gradient(0deg, rgb(1, 24, 82) 0%, rgba(27, 69, 116, 0.75) 100%);
+}
+
 .emphase{
     color:rgb(165, 205, 251);
 }

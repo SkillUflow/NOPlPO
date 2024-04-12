@@ -4,10 +4,10 @@
 
 function compareLyrics(lyrics, typedLyrics) {
     const points_per_type = {
-        'perfect': 1, // Multiplier for perfect typing
-        'correct_position': 2,
+        'perfect': 0, // Multiplier for perfect typing bonus, currently set to 0 because we work in percentages
+        'correct_position': 1,
         'correct_word': 0.5,
-        'incorrect_word': -0.25
+        'incorrect_word': -0.5
     }
     let score = 0;
 
@@ -15,8 +15,8 @@ function compareLyrics(lyrics, typedLyrics) {
     lyrics = simplfyLyrics(lyrics);
     typedLyrics = simplfyLyrics(typedLyrics);
 
-    const lyricsWords = lyrics.split(' '); // Split lyrics into words
-    const typedLyricsWords = typedLyrics.split(' ');
+    const lyricsWords = lyrics.split(''); // Split lyrics into letters
+    const typedLyricsWords = typedLyrics.split('');
 
     // Check the words that are both correct and at the right place
     let correct_position_words = 0;
@@ -45,7 +45,10 @@ function compareLyrics(lyrics, typedLyrics) {
         if (typedLyricsWords[i] !== null) score += points_per_type['incorrect_word']; // Every word that wasn't already marked for being correct in some way is therefore incorrect
     }
 
-    return score;
+    // Convert score to percentage
+    score /= lyricsWords.length;
+    score = Math.max(0, score) * 100;
+    return score.toFixed(2);
 }
 
 

@@ -4,12 +4,12 @@
     <title>Add Song</title>
 </head>
 <body>
-    <header></header>
     <h1>Add Song</h1>
     
     <form action="http://localhost:3000/add_song" method="post" enctype="multipart/form-data">
         <label for="songFile">Sélectionnez un fichier de chanson :</label>
-        <input type="file" id="songFile" name="songFile">
+        <input type="file" accept=".txt, .lrc" required  id="songFile" name="songFile">
+        <input type="file" accept=".mp3" required  id="musicFile" name="musicFile">
         <br>
         <input type="submit" value="Télécharger">
     </form>

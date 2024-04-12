@@ -58,36 +58,52 @@ app.post('/getAllSongsFromDB', async (req, res) => {
 
 
 //on utilise multer pour gérer les fichiers
-const uploadDirectory = path.join(__dirname, '../lrc_library');
+
+const mp3Directory = path.join(__dirname, '../frontend/assets/mp3_library');
+const lrcDirectory = path.join(__dirname, '../lrc_library');
+
 
 // Configurer multer pour gérer les fichiers téléchargés
-const storage = multer.diskStorage({
-    destination: uploadDirectory,
-    filename: function (req, file, cb) {
-        cb(null, file.originalname); // Utiliser le nom de fichier d'origine
-    }
+let storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+      if (file.mimetype === 'audio/mpeg') {
+          cb(null, mp3Directory); // Destination pour les fichiers mp3
+      } else {
+          cb(null, lrcDirectory); // Destination pour les fichiers lrc et txt
+      }
+  },
+  filename: function (req, file, cb) {
+      cb(null, file.originalname); // Utiliser le nom de fichier d'origine
+  }
 });
+
+
 
 const upload = multer({ storage: storage });
 
-app.post('/add_song', upload.single('songFile'), (req, res) => {
-  if (!req.file) {
-      return res.status(400).send('Aucun fichier sélectionné.');
-  }
 
-  const { file } = req;
+
+app.post('/add_song', upload.fields([
+  { name: 'songFile', maxCount: 1 },
+  { name: 'musicFile', maxCount: 1 }
+]), (req, res) => {
+  const songFile = req.files['songFile'];
+  const musicFile = req.files['musicFile'];
+  if (!musicFile || !songFile) {
+      return res.status(400).send('Veuillez sélectionner un fichier MP3 et un fichier de paroles.');
+  }
   try {
-      addFile(file.path, (err) => {
+      addFile(songFile[0], musicFile[0], (err) => {
           if (err) {
-              console.error("Erreur lors de la copie du fichier :", err);
-              res.status(500).send({ error: 'Une erreur est survenue lors de la copie du fichier' });
+              console.error("Erreur lors de l'ajout des fichiers :", err);
+              res.status(500).send({ error: "Une erreur est survenue lors de l'ajout des fichiers" });
           } else {
-              console.log("Fichier copié avec succès.");
-              res.send({ message: "Chanson ajoutée avec succès" });
+              console.log("Fichiers ajoutés avec succès.");
+              res.send({ message: "Fichiers ajoutés avec succès" });
           }
       });
   } catch (error) {
-      console.error("Erreur lors de l'ajout de la chanson :", error);
+      console.error("Erreur lors de l'ajout des fichiers :", error);
       res.status(500).send({ error: error.message });
   }
 });
@@ -95,3 +111,8 @@ app.post('/add_song', upload.single('songFile'), (req, res) => {
 app.listen(port, () => {
   console.log(`NOPlPO app listening at http://localhost:${port}`);
 });
+
+
+
+
+

@@ -6,7 +6,7 @@ var paroles = []
 
 
 
-let song_name = " Un jour au mauvais endroit";
+let song_name = localStorage.getItem("songName");
 continuePlaying = false;
 
 // Use fetch API to send a POST request to the server
@@ -57,7 +57,7 @@ async function GestionParoles(songData){
  }
  
 
-
+ musTime = 0;
   afficherParole();
   if(songData["song_info"].offset<0){
     musTime = -songData["song_info"].offset;
@@ -197,7 +197,7 @@ function calculateScore(typedLyrics, correctLyrics) {
 
 
       // For example, if you want to display the score in an element with id="score"
-      document.getElementById('score').textContent = `Score: ${data.score}`;
+      document.getElementById('score').textContent = `${data.score}`;
     })
     .catch(error => {
       // Handle any errors that occurred during the fetch

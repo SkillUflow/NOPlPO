@@ -80,3 +80,24 @@ main{
 #parolesCompletesDiv p{
     margin: 0;
 }
+
+#EndGameSection{
+    position: fixed;
+    bottom: 40%;
+    padding: 32px 0;
+    width: 100%;
+    background-color: #0094FF;
+    border: solid 2px yellow;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    color: white;
+    text-decoration: none;
+
+}
+
+#goToSelectBtn{
+    text-decoration: underline;
+    color: white;
+}

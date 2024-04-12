@@ -32,8 +32,9 @@ h2{
     display: flex;
     align-items: center;
     justify-content: space-around;
-
 }
+
+
 .artist_btn{
     background: linear-gradient(0deg, rgb(136, 103, 255) 0%, rgb(0, 0, 255) 100%);
 }
@@ -44,4 +45,19 @@ h2{
 
 .genre_btn{
     background: linear-gradient(0deg, rgb(255, 169, 123) 0%, rgb(255, 89, 0) 100%);
+}
+
+.artist_btn:hover{
+    cursor:pointer;
+    background: linear-gradient(0deg, rgba(136, 103, 255, 0.5) 0%, rgba(0, 0, 255, 0.5) 100%);
+}
+
+.epoch_btn:hover{
+    cursor:pointer;
+    background: linear-gradient(0deg, rgba(99, 197, 97, 0.5) 0%, rgba(39, 197, 0, 0.5) 100%);
+}
+
+.genre_btn:hover{
+    cursor:pointer;
+    background: linear-gradient(0deg, rgba(255, 169, 123, 0.5) 0%, rgba(255, 89, 0, 0.5) 100%);
 }

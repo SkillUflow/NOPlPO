@@ -17,8 +17,9 @@
 
 body{
     background-color: #DCF0FF;
+    min-height: 100%;
     margin: 0;
-    height: 100vh;
+    position: relative;
 }
 
 header{
@@ -44,10 +45,18 @@ header ul li {
     margin: 0 1rem; /* Ajoute un espace entre chaque élément */
 }
 
-
 #logo a{
     font-family: MontserratBold;
     font-size: 3rem;
     position: relative;
     left:1.5rem;
+}
+
+
+footer{
+    background-color: #456277;
+    height: 50px;
+    color:#DCF0FF;
+    position: absolute;
+    width: 100%;
 }

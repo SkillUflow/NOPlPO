@@ -38,11 +38,9 @@ fetch('/getFromName', {
 var paroleTrou = 0;
 
 async function GestionParoles(songData){
-  console.log(songData);
   let songDataJson = JSON.parse(songData["song_info"].lyrics);
   paroles = songDataJson.lyrics;
   document.getElementById("musique").src="assets/mp3_library/"+songDataJson.artistId.trim()+" - "+songDataJson.title.trim()+".mp3";
-  console.log(document.getElementById("musique").src);
   
   //choix de la ligne a trouer
 
@@ -103,7 +101,7 @@ document.addEventListener('keydown', function(e) {
     e.preventDefault(); 
     switch(e.key){
       case 'Enter':
-        console.log(entreesClavier.join('').replace(/<\/?[^>]+(>|$)/g, ""));
+      
         calculateScore(entreesClavier.join('').replace(/<\/?[^>]+(>|$)/g, ""), paroles[paroleTrou].lyrics);
         visualCheck();
         entreesClavier = []; 
@@ -119,6 +117,7 @@ document.addEventListener('keydown', function(e) {
       case 'F12':
       case 'Control':
       case 'CapsLock':
+        
       case 'Shift':
         break;
       default:
@@ -152,7 +151,7 @@ function afficherParole(){
             
         }
     lastParoleIndice++;
-    console.log(timeout);
+    
     setTimeout(afficherParole,timeout);
     }
     else{
@@ -191,7 +190,7 @@ function calculateScore(typedLyrics, correctLyrics) {
     })
     .then(data => {
       // Handle the data (the score)
-      console.log(data);
+    
 
       //effet grapghique
 
@@ -216,7 +215,6 @@ function visualCheck(){
     index = 0;
     document.getElementById("parolesCompletesDiv").style.display="flex";
     function editLetter(){
-      console.log(index);
       if(index<typedLettersList.length){
         document.getElementById("parolesVraies").innerText = dropedParoles.slice(0,index+1);
         if(dropedParoles[index]&&typedLettersList[index]&&dropedParoles[index].toLocaleLowerCase()==typedLettersList[index].innerText.toLocaleLowerCase()){
@@ -232,10 +230,23 @@ function visualCheck(){
         }
         setTimeout(editLetter,time);
       }else{
-        document.getElementById("parolesVraies").innerText = dropedParoles
+        let cadre = document.getElementById("CadreParole");
+        let parolesCompletesDiv = document.getElementById("parolesCompletesDiv")
+        parolesCompletesDiv.innerText = dropedParoles
         document.getElementById('musique').play();
         document.getElementById('musique').volume = 0.25
         document.getElementById('EndGameSection').style.display="flex";
+
+        cadre.style.height = "7%";
+        cadre.style.width="50%"
+        cadre.style.opacity = 0.6;
+        cadre.style.fontSize= "1rem";
+
+        parolesCompletesDiv.style.height = "5%";
+        parolesCompletesDiv.style.width = "30%";
+        parolesCompletesDiv.style.fontSize = "0.5rem";
+        parolesCompletesDiv.style.opacity = 0.6;
+
         continuePlaying =true;
 
         afficherParole();

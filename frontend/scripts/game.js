@@ -6,7 +6,7 @@ var paroles = []
 
 
 
-let song_name = "Rolling in the Deep";
+let song_name = localStorage.getItem("songName");
 continuePlaying = false;
 
 // Use fetch API to send a POST request to the server
@@ -35,27 +35,39 @@ fetch('/getFromName', {
     console.error('Error fetching data: ', error);
   })
 
-
+var paroleTrou = 0;
 
 async function GestionParoles(songData){
-  console.log(songData);
   let songDataJson = JSON.parse(songData["song_info"].lyrics);
   paroles = songDataJson.lyrics;
-  console.log(songDataJson);
   document.getElementById("musique").src="assets/mp3_library/"+songDataJson.artistId.trim()+" - "+songDataJson.title.trim()+".mp3";
-  console.log(document.getElementById("musique").src);
   
+  //choix de la ligne a trouer
+
+  do{
+  paroleTrou = Math.floor(Math.random() * (10 - 4 + 1)) + 4;
+  }while(paroles[paroleTrou].lyrics.split(" ").length <=3);
 
 
-  //offcet
-  console.log(songData["song_info"].offset);
-  musique.currentTime = Math.round((songData["song_info"].offset)/1000);
-  document.getElementById('musique').play();
-  afficherParole();   
+
+ if(songData["song_info"].offset>=0){
+    musique.currentTime = (songData["song_info"].offset)/1000;
+ }
+ 
+
+ musTime = 0;
+  afficherParole();
+  if(songData["song_info"].offset<0){
+    musTime = -songData["song_info"].offset;
+  }
+  setTimeout(launchMusique,musTime) 
 }
 
 
-var paroleTrou = Math.floor(Math.random() * (10 - 4 + 1)) + 4;
+function launchMusique(){
+  document.getElementById('musique').play();
+}
+
 var lastParoleIndice = 0;
 
 var dropedParoles ="";
@@ -69,11 +81,11 @@ function generateTrou(parole){
     nbMots = listeMots.length;
     let placeMot = Math.round(Math.random()*((nbMots-2)-2)+1);
     if(placeMot==0){placeMot = 1};
+
     dropedParoles = listeMots[placeMot-1]+" "+listeMots[placeMot]+" "+listeMots[placeMot+1];
     listeMots[placeMot-1]="<span id='fillSpan'>"+"_".repeat(listeMots[placeMot-1].length);
     listeMots[placeMot+1]="_".repeat(listeMots[placeMot+1].length)+"</span>";
     listeMots[placeMot]="_".repeat(listeMots[placeMot].length);
-    console.log(listeMots);
     stringMots = listeMots.join(' ')
     return stringMots;
 
@@ -89,7 +101,7 @@ document.addEventListener('keydown', function(e) {
     e.preventDefault(); 
     switch(e.key){
       case 'Enter':
-        console.log(entreesClavier.join('').replace(/<\/?[^>]+(>|$)/g, ""));
+      
         calculateScore(entreesClavier.join('').replace(/<\/?[^>]+(>|$)/g, ""), paroles[paroleTrou].lyrics);
         visualCheck();
         entreesClavier = []; 
@@ -105,6 +117,7 @@ document.addEventListener('keydown', function(e) {
       case 'F12':
       case 'Control':
       case 'CapsLock':
+        
       case 'Shift':
         break;
       default:
@@ -138,7 +151,7 @@ function afficherParole(){
             
         }
     lastParoleIndice++;
-    console.log(timeout);
+    
     setTimeout(afficherParole,timeout);
     }
     else{
@@ -177,13 +190,13 @@ function calculateScore(typedLyrics, correctLyrics) {
     })
     .then(data => {
       // Handle the data (the score)
-      console.log(data);
+    
 
       //effet grapghique
 
 
       // For example, if you want to display the score in an element with id="score"
-      document.getElementById('score').textContent = `Score: ${data.score}`;
+      document.getElementById('score').textContent = `${data.score}`;
     })
     .catch(error => {
       // Handle any errors that occurred during the fetch
@@ -202,10 +215,9 @@ function visualCheck(){
     index = 0;
     document.getElementById("parolesCompletesDiv").style.display="flex";
     function editLetter(){
-      console.log(index);
       if(index<typedLettersList.length){
         document.getElementById("parolesVraies").innerText = dropedParoles.slice(0,index+1);
-        if(dropedParoles[index].toLocaleLowerCase()==typedLettersList[index].innerText.toLocaleLowerCase()){
+        if(dropedParoles[index]&&typedLettersList[index]&&dropedParoles[index].toLocaleLowerCase()==typedLettersList[index].innerText.toLocaleLowerCase()){
           typedLettersList[index].style.color="#05E800"
         }else{
           typedLettersList[index].style.color="#F23E3E"
@@ -218,9 +230,23 @@ function visualCheck(){
         }
         setTimeout(editLetter,time);
       }else{
-        document.getElementById("parolesVraies").innerText = dropedParoles
+        let cadre = document.getElementById("CadreParole");
+        let parolesCompletesDiv = document.getElementById("parolesCompletesDiv")
+        parolesCompletesDiv.innerText = dropedParoles
         document.getElementById('musique').play();
         document.getElementById('musique').volume = 0.25
+        document.getElementById('EndGameSection').style.display="flex";
+
+        cadre.style.height = "7%";
+        cadre.style.width="50%"
+        cadre.style.opacity = 0.6;
+        cadre.style.fontSize= "1rem";
+
+        parolesCompletesDiv.style.height = "5%";
+        parolesCompletesDiv.style.width = "30%";
+        parolesCompletesDiv.style.fontSize = "0.5rem";
+        parolesCompletesDiv.style.opacity = 0.6;
+
         continuePlaying =true;
 
         afficherParole();

@@ -13,8 +13,9 @@
     </header>
     <main>
         <div>
-            <p id="score"></p>
-            <audio controls id="musique" src="assets/mp3_library/Orelsan - La Quête.mp3" type="audio/mp3"></audio>
+         
+         
+            <audio id="musique" src="assets/mp3_library/Orelsan - La Quête.mp3" type="audio/mp3"></audio>
 
         </div>
         <section id="ParolesSection">
@@ -30,10 +31,12 @@
         <div id="parolesCompletesDiv">
             <p id="parolesVraies">T'es un p'tit quinquin toi</p>
         </div>
-        <!-- <div id="CadreReponse">
-            <input type="text" id="typed-lyrics" placeholder="Réponse">
-            <button id="confirm-lyrics">Valider</button>
-        </div> -->
+
+        <section id="EndGameSection">
+            <h2>Votre score: <span id="score"></span></h2>
+            <a id="goToSelectBtn" href="all_select.html">Retour à la sélection</a>
+        </section>
+
     </main>
 </body>
 <script src="scripts/game.js"></script>

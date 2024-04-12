@@ -235,6 +235,7 @@ function visualCheck(){
         document.getElementById("parolesVraies").innerText = dropedParoles
         document.getElementById('musique').play();
         document.getElementById('musique').volume = 0.25
+        document.getElementById('EndGameSection').style.display="flex";
         continuePlaying =true;
 
         afficherParole();

@@ -1,20 +1,34 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="assets/style/global.css">
+    <link rel="stylesheet" href="assets/style/add_song.css">
     <title>Add Song</title>
 </head>
 <body>
-    <h1>Add Song</h1>
+    <header>
     
-    <form action="http://localhost:3000/add_song" method="post" enctype="multipart/form-data">
-        <label for="songFile">Sélectionnez un fichier de chanson :</label>
-        <input type="file" accept=".txt, .lrc" required  id="songFile" name="songFile">
-        <input type="file" accept=".mp3" required  id="musicFile" name="musicFile">
-        <br>
-        <input type="submit" value="Télécharger">
-    </form>
+    </header>
+    <main>
+        <h1>Ajouter une chanson</h1>
+        
+        <form action="http://localhost:3000/add_song" method="post" enctype="multipart/form-data" id="form">
+            <p for="songFile">Sélectionnez un fichier de chanson :</p>
+            <div class="input">
+                <label for="songFile">Fichier LRC</label>
+                <input type="file" accept=".txt, .lrc" required  id="songFile" name="songFile">
+            </div>
+            <div class="input">
+                <label for="musicFile">Fichier Mp3</label>
+                <input type="file" accept=".mp3" required  id="musicFile" name="musicFile">
+            </div>
+            <input type="submit" value="Télécharger" class="btn">
+        </form>
 
-
+    </main>
     <footer></footer>    
 </body>
+<script src="scripts/add_song.js"></script>
 </html>

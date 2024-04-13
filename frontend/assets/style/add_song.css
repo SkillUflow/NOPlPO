@@ -1,0 +1,40 @@
+
+
+h1{
+    text-align: center;
+    font-size: 4rem;
+    font-weight :700;
+}
+
+
+.btn{
+    width: 40%;
+    border-radius: 32px;
+    background: linear-gradient(0deg, rgba(0,35,124,1) 0%, rgba(81,161,255,0.75) 100%);
+    border: solid white 5px;
+    margin: auto;
+    font-size: 2rem;
+    color: white;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-direction: column;
+    text-decoration: none;
+}
+
+.btn:hover{
+    background: linear-gradient(0deg, rgb(1, 24, 82) 0%, rgba(27, 69, 116, 0.75) 100%);
+}
+
+
+#form{
+    margin: auto;
+    width: 80%;
+    height: 40%;
+
+}
+
+.input{
+    margin: 16px 0;
+}

@@ -117,7 +117,8 @@ document.addEventListener('keydown', function(e) {
       case 'F12':
       case 'Control':
       case 'CapsLock':
-        
+      case 'AudioVolumeUp':
+      case 'AudioVolumeDown':
       case 'Shift':
         break;
       default:
@@ -260,5 +261,10 @@ function visualCheck(){
     editLetter();
 
 }
+
+
+
+
+
 
 

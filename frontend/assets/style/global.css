@@ -58,5 +58,7 @@ footer{
     height: 50px;
     color:#DCF0FF;
     position: absolute;
+    /* Put the footer at the bottom of the page */
     width: 100%;
+    clear:both;
 }

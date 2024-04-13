@@ -83,7 +83,7 @@ async function afficherSongsInfos(data){
     groupedData[decade] = groupedData[decade].concat(epochArray[year]);
   }
 
-  for (let decade in groupedData) {
+  for (let decade in grouped  Data) {
     let valeur = groupedData[decade];
     
     if(valeur.length > 1){

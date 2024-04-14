@@ -16,8 +16,3 @@ Qui sait, peut-être qu'un jour, vous n'oublierez plus les paroles, vous non plu
 - Jouer au célèbre jeu télévisé en ligne.
 - Choisir un morceau dans la liste des morceaux disponibles, ou laisser le hasard décider dans la liste des catégories, années ou artistes disponibles.
 - Ajouter ses propres morceaux à la base de données.
-
-## Technologies
-
-![image]({https://img.shields.io/badge/Node%20js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white})
-![image]({https://img.shields.io/badge/Sqlite-003B57?style=for-the-badge&logo=sqlite&logoColor=white})

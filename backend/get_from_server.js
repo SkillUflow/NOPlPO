@@ -14,7 +14,6 @@ async function getAllSongsFromDB() {
         console.error(err.message);
         reject(err); 
       } else {
-        //console.log("DATA :", data);
         resolve(data); 
       }
     });

@@ -197,7 +197,26 @@ function calculateScore(typedLyrics, correctLyrics) {
 
 
       // For example, if you want to display the score in an element with id="score"
-      document.getElementById('score').textContent = `${data.score}`;
+      document.getElementById('score').textContent = `${data.score}%`;
+      scoreText = document.getElementById('score');
+      console.log(data.score);
+      if(data.score==200){
+        scoreText.style.color="#00f0ff";
+        scoreText.textContent = scoreText.textContent+"\n Aucune parole oubliée!"
+      }
+      if(data.score<=100){
+        scoreText.style.color="#36ff00";
+      }
+      if(data.score<=75){
+        scoreText.style.color="#c5ff00";
+      }
+      if(data.score<=50){
+        scoreText.style.color="#ffae00";
+      }
+      if(data.score<= 25){
+        scoreText.style.color="#eb0000";
+      }
+      
     })
     .catch(error => {
       // Handle any errors that occurred during the fetch

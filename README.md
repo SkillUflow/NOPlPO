@@ -19,3 +19,10 @@ Qui sait, peut-être qu'un jour, vous n'oublierez plus les paroles, vous non plu
 
 ## Notes:
 Site dévloppé par Louis DAMAY,  Aymeric Droulers, Robin Matarese et Romain Ryckebusch, dans le cadre du projet web CIR2 2023-2024
+
+Comment utiliser le projet:
+Une fois à la racine du projet, écrivez dans votre terminal les commandes suivantes:
+cd backend
+npm rebuild (uniquement la première fois)
+npm start
+Vous pouvez désormais ne pas oublier les paroles sur localhost:3000

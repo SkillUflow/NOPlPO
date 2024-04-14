@@ -15,7 +15,6 @@ async function getFromName(name) {
         console.error(err.message);
         reject(err); 
       } else {
-        console.log("ROW :", row);
         resolve(row); 
       }
     });

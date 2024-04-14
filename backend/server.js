@@ -33,7 +33,6 @@ app.post('/getFromName', async (req, res) => {
   try {
     // Attendez le résultat avant de continuer.
     const song_info = await getFromName(name);
-    console.log(song_info);
     res.send({ song_info });
   } catch (error) {
     console.error(error);
@@ -98,7 +97,7 @@ app.post('/add_song', upload.fields([
               console.error("Erreur lors de l'ajout des fichiers :", err);
               res.status(500).send({ error: "Une erreur est survenue lors de l'ajout des fichiers" });
           } else {
-              console.log("Fichiers ajoutés avec succès.");
+              console.info("Fichiers ajoutés avec succès.");
               res.send({ message: "Fichiers ajoutés avec succès" });
           }
       });

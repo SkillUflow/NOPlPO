@@ -47,7 +47,7 @@ function addFile(fileText,fileMusic, callback) {
             if(callback) callback(err); 
             return; 
         } 
-        console.log('File Text saved successfully!'); 
+        console.info('File Text saved successfully!'); 
     });
 
     //on vérifie que le fichier est bien un fichier mp3
@@ -60,8 +60,6 @@ function addFile(fileText,fileMusic, callback) {
      else {
         const artist = fileContent.match(/\[ar:(.*?)\]/)[1];
         const title = fileContent.match(/\[ti:(.*?)\]/)[1];
-        console.log(artist);
-        console.log(title);
         fs.copyFile(fileMusic.path, `../frontend/assets/mp3_library/${artist} - ${title}.mp3`, (err) => {
         
         if (err) { 
@@ -69,7 +67,7 @@ function addFile(fileText,fileMusic, callback) {
             if(callback) callback(err); 
             return; 
         } 
-        console.log('File Music saved successfully!'); 
+        console.info('File Music saved successfully!'); 
     });}
     return;
     // bon bah voila, c'est ajouté. On a plus qu'à laisser les admins vérifier que c'est bien une chanson et pas un truc chelou; puis ils n'auront qu'à utiliser create_DB pour mettre la base à jour !

@@ -102,7 +102,7 @@ document.addEventListener('keydown', function(e) {
     switch(e.key){
       case 'Enter':
       
-        calculateScore(entreesClavier.join('').replace(/<\/?[^>]+(>|$)/g, ""), paroles[paroleTrou].lyrics);
+        calculateScore(entreesClavier.join('').replace(/<\/?[^>]+(>|$)/g, ""), dropedParoles);
         visualCheck();
         entreesClavier = []; 
         canWrite = false;

@@ -16,3 +16,6 @@ Qui sait, peut-être qu'un jour, vous n'oublierez plus les paroles, vous non plu
 - Jouer au célèbre jeu télévisé en ligne.
 - Choisir un morceau dans la liste des morceaux disponibles, ou laisser le hasard décider dans la liste des catégories, années ou artistes disponibles.
 - Ajouter ses propres morceaux à la base de données.
+
+## Notes:
+Site dévloppé par Louis DAMAY,  Aymeric Droulers, Robin Matarese et Romain Ryckebusch, dans le cadre du projet web CIR2 2023-2024

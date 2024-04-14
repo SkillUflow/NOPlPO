@@ -6,15 +6,18 @@ le 15 décembre 2007.
 
 Dans la version classique, N'oubliez pas les paroles se rappoche d'un grand karaoké. Les des candidats chantent une chanson interprétée en direct par un orchestre, le but étant de continuer à chanter lorsque les paroles ne sont plus affichées à l'écran et retrouver les mots manquants. 
 
-Le candidat peut choisir entre deux chansons. Il doit ensuite trouver les paroles manquantes dans la chanson choisie. S'il a bon, il gagne des points !
+Le candidat peut choisir entre deux chansons. Il doit ensuite trouver les paroles manquantes dans la chanson choisie. S'il a bon, il gagne des points.
 
-L'objectif du joueur est d'être celui qui a le plus de points du site. Dans l'onglet "Leaderboard", vous trouverez les meilleurs joueurs actuels.
+Profitez dès maintenant de la version en ligne de ce jeu télévisé ! Entrainez-vous pour surpasser les plus grands Maestros de l'émission, organisez vos propres soirées karaoké grâce au lecteur dynamique, ajoutez vos propres morceaux... Et faites de votre mieux pour gagner le plus de points possibles !
+Qui sait, peut-être qu'un jour, vous n'oublierez plus les paroles, vous non plus !
 
 ## Fonctionnalités
 
-- Une fois son compte créé, le joueur peut participer dans l'onglet Jeu. S'il trouve les bonnes paroles (selon une difficulté aléatoire de 1 à 5 étoiles), il gagne un certain nombre de points.
-- Sinon, il en perd un certain nombre selon la difficulté.
-s'il est dans le top 20 des joueurs du site, son nom est affiché dans l'onglet Leaderboard.
-- Il y a aussi un onglet "Compte", pour modifier son nom d'utilisateur, son adresse-mail, son mot de passe ou encore sa photo de profil.
-- Toutes ces informations sont stockées en sécurité dans nos bases de données.
-- Quand un joueur a fait toutes les questions de difficultés 1 à 5 étoiles, il entre dans la catégories "Warriors" : cette catégorie regroupe le TOP50 actuel Français. Ainsi elle évolue en permanance.
+- Jouer au célèbre jeu télévisé en ligne.
+- Choisir un morceau dans la liste des morceaux disponibles, ou laisser le hasard décider dans la liste des catégories, années ou artistes disponibles.
+- Ajouter ses propres morceaux à la base de données.
+
+## Technologies
+
+![image]({https://img.shields.io/badge/Node%20js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white})
+![image]({https://img.shields.io/badge/Sqlite-003B57?style=for-the-badge&logo=sqlite&logoColor=white})

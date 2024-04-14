@@ -41,7 +41,7 @@ function addFile(fileText,fileMusic, callback) {
     }
 
     // On enregistre le fichier dans un dossier
-    else fs.copyFile(fileText.path, '../lrc_library' + fileText.originalname, (err) => {
+    else fs.copyFile(fileText.path, '../lrc_library/' + fileText.originalname, (err) => {
         if (err) { 
             console.error(err); 
             if(callback) callback(err); 

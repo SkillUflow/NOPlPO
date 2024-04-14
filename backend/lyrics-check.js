@@ -32,13 +32,16 @@ function compareLyrics(lyrics, typedLyrics) {
     if (correct_position_words === lyricsWords.length && typedLyricsWords.every(word => word === null)) score +=  points_per_type['correct_position'] * points_per_type['perfect'] * lyricsWords.length // Bonus for perfect typing
 
     // Check the words that are correct but not at the right place
+    let incorrect_position_letters = 0;
     for (let i = 0; i < lyricsWords.length; i++) {
         if (typedLyricsWords.includes(lyricsWords[i]) && lyricsWords[i] !== null) { // If the word has been typed and was not already checked (either for being correctly placed or correctly typed)
-            score += points_per_type['correct_word']; 
             typedLyricsWords[typedLyricsWords.indexOf(lyricsWords[i])] = null; // Mark the word as already checked
             lyricsWords[i] = null; // Mark the word as already checked
+            incorrect_position_letters++;
         }
     }
+
+    if (incorrect_position_letters / lyricsWords.length > 0.75) score += points_per_type['correct_word'] * (1 - incorrect_position_letters / lyricsWords.length); // If the lyrics typed were mostly correct (but contained typos or otherwise mistakes) the player still gets some points for the letters that were correct
 
     // Check the words that are simlpy incorrect
     for (let i = 0; i < typedLyricsWords.length; i++) {

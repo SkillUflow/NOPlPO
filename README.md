@@ -30,3 +30,5 @@ npm rebuild (uniquement la première fois)
 npm start
 
 Vous pouvez désormais ne pas oublier les paroles sur localhost:3000
+
+Sinon, vous pouvez y jouer en ligne! http://51.75.142.229:3000/ 
